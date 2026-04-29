@@ -31,7 +31,8 @@
                     log("ログイン済み。プロフィール取得中...");
                     const profile = await liff.getProfile();
                     log("プロフィール取得成功。フォームへ転送します。");
-                    window.location.href = GOOGLE_FORM_URL + profile.userId +"&entry.1431897430="+profile.displayname;
+                   log(GOOGLE_FORM_URL + profile.userId +"&entry.1431897430="+profile.displayname);
+                    //window.location.href = GOOGLE_FORM_URL + profile.userId +"&entry.1431897430="+profile.displayname;
                 } else {
                     log("未ログイン。ログイン実行...");
                     liff.login();
