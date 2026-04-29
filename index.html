@@ -10,7 +10,7 @@
     <p>読み込み中...</p>
     <script>
         const LIFF_ID = "2009859800-7otJEk29";
-        const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeWodEZhJgnAlmu3KfXm2R_czNUymzJoRocIYmSAdJPeRJj0w/viewform?usp=pp_url&entry.866073492=";
+        const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeWodEZhJgnAlmu3KfXm2R_czNUymzJoRocIYmSAdJPeRJj0w/viewform?usp=pp_url";
 
         function log(msg) {
             document.body.innerHTML = "<h1>" + msg + "</h1>";
@@ -31,7 +31,7 @@
                     log("ログイン済み。プロフィール取得中...");
                     const profile = await liff.getProfile();
                     log("プロフィール取得成功。フォームへ転送します。");
-                   const url = GOOGLE_FORM_BASE + "&entry.866073492=" + encodeURIComponent(profile.userId) + "&entry.1431897430=" + encodeURIComponent(profile.displayName);
+                   const url = GOOGLE_FORM_URL + "&entry.866073492=" + encodeURIComponent(profile.userId) + "&entry.1431897430=" + encodeURIComponent(profile.displayName);
                     log("転送先URL: " + url);  // ← 画面に表示
     // window.location.href = url;  // ← 一時的にコメントアウト
                 } else {
