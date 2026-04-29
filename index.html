@@ -17,22 +17,22 @@
         }
  
         const timeout = setTimeout(() => {
-            log("タイムアウト：liff.initが10秒以上応答なし");
+            //log("タイムアウト：liff.initが10秒以上応答なし");
         }, 10000);
 
         async function initializeLiff() {
-            log("LIFF_IDチェック中...");
+            //log("LIFF_IDチェック中...");
             try {
                 await liff.init({ liffId: LIFF_ID });
                 clearTimeout(timeout);
-                log("初期化成功。ログインチェック中...");
+               // log("初期化成功。ログインチェック中...");
 
                 if (liff.isLoggedIn()) {
-                    log("ログイン済み。プロフィール取得中...");
+                 //   log("ログイン済み。プロフィール取得中...");
                     const profile = await liff.getProfile();
-                    log("プロフィール取得成功。フォームへ転送します。");
+                 //   log("プロフィール取得成功。フォームへ転送します。");
                    const url = GOOGLE_FORM_URL + "&entry.866073492=" + encodeURIComponent(profile.userId) + "&entry.1431897430=" + encodeURIComponent(profile.displayName);
-                    log("転送先URL!: " + url);  // ← 画面に表示
+                 //   log("転送先URL!: " + url);  // ← 画面に表示
 
                     window.location.href = url;  // ← 一時的にコメントアウト
                 } else {
