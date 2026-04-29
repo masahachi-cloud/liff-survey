@@ -32,7 +32,7 @@
                     const profile = await liff.getProfile();
                     log("プロフィール取得成功。フォームへ転送します。");
                    const url = GOOGLE_FORM_URL + "&entry.866073492=" + encodeURIComponent(profile.userId) + "&entry.1431897430=" + encodeURIComponent(profile.displayName);
-                    log("転送先URL: " + url);  // ← 画面に表示
+                    log("転送先URL!: " + url);  // ← 画面に表示
 
                     window.location.href = url;  // ← 一時的にコメントアウト
                 } else {
