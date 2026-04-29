@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://static.line-scdn.net/liff/edge/versions/2.22.3/sdk.js"></script>
+    <title>アンケートへ移動中...</title>
+</head>
+<body>
+    <p>読み込み中...</p>
+    <script>
+        const LIFF_ID = "2009859800-7otJEk29";
+        const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeWodEZhJgnAlmu3KfXm2R_czNUymzJoRocIYmSAdJPeRJj0w/viewform?usp=pp_url&entry.652207838=";
+
+        function log(msg) {
+            document.body.innerHTML = "<h1>" + msg + "</h1>";
+        }
+
+        const timeout = setTimeout(() => {
+            log("タイムアウト：liff.initが10秒以上応答なし");
+        }, 10000);
+
+        async function initializeLiff() {
+            log("LIFF_IDチェック中...");
+            try {
+                await liff.init({ liffId: LIFF_ID });
+                clearTimeout(timeout);
+                log("初期化成功。ログインチェック中...");
+
+                if (liff.isLoggedIn()) {
+                    log("ログイン済み。プロフィール取得中...");
+                    const profile = await liff.getProfile();
+                    log("プロフィール取得成功。フォームへ転送します。");
+                    window.location.href = GOOGLE_FORM_URL + profile.userId;
+                } else {
+                    log("未ログイン。ログイン実行...");
+                    liff.login();
+                }
+            } catch (err) {
+                clearTimeout(timeout);
+                log("エラー: " + (err.message || err.code || JSON.stringify(err)));
+            }
+        }
+
+        initializeLiff();
+    </script>
+</body>
+</html>
